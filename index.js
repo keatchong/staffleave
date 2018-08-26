@@ -15,7 +15,7 @@ server.use(bodyParser.json());
 
 server.post('/get-leave-balance', (req, res) => {
 
-    const staffToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.staffno ? req.body.result.parameters.staffno : 'Unknown';
+    const staffToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.staffno ? req.body.queryResult		.parameters.staffno : 'Unknown';
     console.log(staffToSearch);
 	const secret = 'secret';
 	const hash = crypto.createHmac('sha256', secret)
@@ -37,15 +37,13 @@ server.post('/get-leave-balance', (req, res) => {
             //let dataToSend = movieToSearch === 'The Godfather' ? `I don't have the required info on that. Here's some info on 'The Godfather' instead.\n` : '';
             let dataToSend = `Leave Balance for Staff ${staff.firstName} is ${staff.leaveBalance}`;
             return res.json({
-                speech: dataToSend,
-                displayText: dataToSend,
+                fulfillmentText: dataToSend,
                 source: 'get-leave-balance'
             });
         });
     }, (error) => {
         return res.json({
-            speech: 'Something went wrong!',
-            displayText: 'Something went wrong!',
+            fulfillmentText: 'Something went wrong!',
             source: 'get-leave-balance'
         });
     });
