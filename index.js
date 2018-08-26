@@ -22,7 +22,7 @@ server.post('/get-leave-balance', (req, res) => {
                    .update('Message')
                    .digest('base64');
 	console.log(hash);
-	const reqUrl = encodeURI(`http://169.254.79.71:8080/web-student-tracker/rest/student/${hash}/${staffToSearch}`);
+	const reqUrl = encodeURI(`http://115.134.194.243:8080/web-student-tracker/rest/student/${hash}/${staffToSearch}`);
 	console.log(reqUrl);
     
 	
