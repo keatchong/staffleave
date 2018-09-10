@@ -64,7 +64,7 @@ function login(req,res) {
             return res.json({
                 fulfillmentText: 'Login Success !!',
                 source: 'login',
-				outputContexts: [{"name":"login-authenticated", "lifespan":50, "parameters":{"token":token}}]
+				outputContexts: [{"name":"login-authenticated", "lifespanCount":50, "parameters":{"token":token}}]
 				
             });
         });
