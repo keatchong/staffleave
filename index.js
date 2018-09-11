@@ -94,10 +94,33 @@ function getLeaveBalance(req,res) {
 	const hash = crypto.createHmac('sha256', secret)
                    .update('Message')
                    .digest('base64');
-	const token = 	req.body.queryResult &&req.body.queryResult.outputContexts &&  req.body.queryResult.outputContexts.parameters && req.body.queryResult.outputContexts.parameters.token ?
-	req.body.queryResult.outputContexts.parameters.token : 'Unknown';
+	let contextJson = 	req.body.queryResult && req.body.queryResult.outputContexts &&  req.body.queryResult.outputContexts ?  req.body.queryResult.outputContexts :  'Unknown';
+	
+	const sessionId =  req.body.session ? req.body.session: 'Unknown';
+	
+	//console.log(contextJson);
+	var token = 'UNKNOWN'
+	
+	for( var i = 0; i <  contextJson.length; i++) {
+		var obj = contextJson[i];
+		if (obj.name.includes('login-authenticated')) {
+			//token = obj.parameters.token;
+		}	
+	}
+	
 	console.log(token);
 	console.log(hash);
+	
+	if ( token == 'UNKNOWN' ) {
+		return res.json({
+                fulfillmentText: "Please authenticate yourself first",
+                source: 'get-leave-balance',
+				outputContexts: [{"name": sessionId+"/contexts/"+"expect-login", "lifespanCount":15, "parameters":{}}]
+				
+            });
+		
+	}	
+	
 	const reqUrl = encodeURI(`http://175.136.114.174:8080/web-student-tracker/rest/student/${hash}/${staffToSearch}`);
 	console.log(reqUrl);
     
