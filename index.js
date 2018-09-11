@@ -46,6 +46,10 @@ function login(req,res) {
 	
 	const passWord = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.password? req.body.queryResult.parameters.password: 'Unknown';
 	
+	const sessionId = req.body.originalDetectIntentRequest && req.body.originalDetectIntentRequest.session ? req.body.originalDetectIntentRequest.session: 'Unknown';
+	
+
+	
 	console.log("UserId ===> " +  userId);
 	console.log("Password ===> " +  passWord);
 	
@@ -64,7 +68,7 @@ function login(req,res) {
             return res.json({
                 fulfillmentText: 'Login Success !!',
                 source: 'login',
-				outputContexts: [{"name":"login-authenticated", "lifespanCount":50, "parameters":{"token":token}}]
+				outputContexts: [{"name": sessionId+"/contexts/"+"login-authenticated", "lifespanCount":50, "parameters":{"token":token}}]
 				
             });
         });
@@ -79,6 +83,8 @@ function login(req,res) {
 	
 
 }
+
+
 	
 function getLeaveBalance(req,res) {
 
