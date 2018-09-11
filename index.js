@@ -104,7 +104,7 @@ function getLeaveBalance(req,res) {
 	for( var i = 0; i <  contextJson.length; i++) {
 		var obj = contextJson[i];
 		if (obj.name.includes('login-authenticated')) {
-			//token = obj.parameters.token;
+			token = obj.parameters.token;
 		}	
 	}
 	
