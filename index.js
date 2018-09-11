@@ -33,7 +33,7 @@ function dispatchHandler(req,res) {
 	
 	if ( action == 'hr.leave.enquiry') {
 		getLeaveBalance(req,res);	
-	} else if ( action == 'hr.greetings.hello - login') {
+	} else if ( action == 'hr.login') {
 		login(req,res); 
 	}  	
 		
