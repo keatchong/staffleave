@@ -46,7 +46,7 @@ function login(req,res) {
 	
 	const passWord = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.password? req.body.queryResult.parameters.password: 'Unknown';
 	
-	const sessionId = req.body.originalDetectIntentRequest && req.body.originalDetectIntentRequest.session ? req.body.originalDetectIntentRequest.session: 'Unknown';
+	const sessionId =  req.body.session ? req.body.session: 'Unknown';
 	
 
 	
