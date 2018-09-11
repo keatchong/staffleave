@@ -49,7 +49,7 @@ function login(req,res) {
 	console.log("UserId ===> " +  userId);
 	console.log("Password ===> " +  passWord);
 	
-	const reqUrl = encodeURI(`http://115.134.155.171:8080/web-student-tracker/rest/student/signOn/${userId}/${passWord}`);
+	const reqUrl = encodeURI(`http://175.136.114.174:8080/web-student-tracker/rest/student/signOn/${userId}/${passWord}`);
 	console.log(reqUrl);
     
 	http.get(reqUrl, (responseFromAPI) => {
@@ -89,7 +89,7 @@ function getLeaveBalance(req,res) {
                    .update('Message')
                    .digest('base64');
 	console.log(hash);
-	const reqUrl = encodeURI(`http://115.134.155.171:8080/web-student-tracker/rest/student/${hash}/${staffToSearch}`);
+	const reqUrl = encodeURI(`http://175.136.114.174:8080/web-student-tracker/rest/student/${hash}/${staffToSearch}`);
 	console.log(reqUrl);
     
 	http.get(reqUrl, (responseFromAPI) => {
