@@ -94,6 +94,9 @@ function getLeaveBalance(req,res) {
 	const hash = crypto.createHmac('sha256', secret)
                    .update('Message')
                    .digest('base64');
+	const token = 	req.body.queryResult &&req.body.queryResult.outputContexts &&  req.body.queryResult.outputContexts.parameters && req.body.queryResult.outputContexts.parameters.token ?
+	req.body.queryResult.outputContexts.parameters.token : 'Unknown';
+	console.log(token);
 	console.log(hash);
 	const reqUrl = encodeURI(`http://175.136.114.174:8080/web-student-tracker/rest/student/${hash}/${staffToSearch}`);
 	console.log(reqUrl);
